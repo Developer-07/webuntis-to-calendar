@@ -43,6 +43,9 @@ def add_event(start, end, name, location):
             'dateTime': convert_date(end),
             'timeZone': 'Europe/Amsterdam'
         },
+        'recurrence': [
+            'RRULE:FREQ=WEEKLY'
+        ],
         'reminders':{
             'useDefault': True
         }
@@ -78,11 +81,11 @@ def delete_events():
         print('No upcoming events found.')
         return
     for event in events:
-        time.sleep(0.2)
+        time.sleep(5)
         thread = threading.Thread(target=delete_event, args=(event['id'],))
         thread_list.append(thread)
         thread.start()
-    time.sleep(10)
+    time.sleep(20)
     print("Finished")
         
 def delete_event(eventid):
